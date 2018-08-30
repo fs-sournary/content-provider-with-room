@@ -1,0 +1,57 @@
+def versions = [:]
+versions.support = "1.0.0-rc01"
+versions.navigation = "1.0.0-alpha05"
+versions.constraintlayout = "1.1.2"
+versions.kotlin = "1.2.51"
+versions.arch = "2.0.0-alpha1"
+versions.android_gradle_plugin = '3.3.0-alpha06'
+versions.room = "2.0.0-beta01"
+
+def support = [:]
+support.material = "com.google.android.material:material:$versions.support"
+support.constraint_layout =
+        "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+support.appcompat = "androidx.appcompat:appcompat:$versions.support"
+support.v4 = "androidx.legacy:legacy-support-v4:$versions.support"
+
+def navigation = [:]
+navigation.fragment = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+navigation.ui = "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
+navigation.testing = "android.arch.navigation:navigation-testing-ktx:$versions.navigation"
+
+def lifecycle = [:]
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.arch"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.arch"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.arch"
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+room.testing = "androidx.room:room-testing:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+
+def build_version = [:]
+build_version.target_sdk = 28
+build_version.min_sdk = 19
+
+def deps = [:]
+deps.support = support
+deps.navigation = navigation
+deps.kotlin = kotlin
+deps.build_version = build_version
+deps.lifecycle = lifecycle
+deps.room = room
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+}
+
+ext.deps = deps
+ext.addRepos = this.&addRepos

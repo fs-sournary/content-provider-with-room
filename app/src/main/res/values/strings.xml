@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ContentProviderWithRoom</string>
+    <string name="searching">Searching</string>
+</resources>
